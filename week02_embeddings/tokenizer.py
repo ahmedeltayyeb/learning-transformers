@@ -23,7 +23,6 @@ class Tokenizer():
             if word in self.words_2_idx:
                 indices.append(self.words_2_idx[word])
             else:
-                print(f"Warning: '{word}' not in vocabulary, using <UNK> token.")
                 indices.append(self.words_2_idx["<UNK>"])
         return indices
 
