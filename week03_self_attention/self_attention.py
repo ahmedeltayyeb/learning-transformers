@@ -8,6 +8,7 @@ class SelfAttention(nn.Module):
         self.q_proj = nn.Linear(d_model, d_k, bias = False)
         self.k_proj = nn.Linear(d_model, d_k, bias = False)
         self.v_proj = nn.Linear(d_model, d_k, bias = False)
+        self.w_0 = nn.Linear(d_k, d_model, bias = False)
         self.d_model = d_model
         self.d_k = d_k
 
@@ -28,3 +29,8 @@ class SelfAttention(nn.Module):
 
         # compute output
         output = torch.matmul(weights, v)  # (seq_length x d_k)
+
+        # project back to d_model
+        return self.w_0(output) # (seq_length x d_model)
+
+        
